@@ -130,9 +130,14 @@ public class PhpmdView extends ViewPart {
 			}
 		};
 
-		sorter = new PhpmdViewSorter(tableViewer, new TableColumn[] { filenaColumn, priorityColumn, ruleColumn,
-				categoryColumn, }, new Comparator[] { filenameComparator, priorityComparator, ruleComparator,
-				categoryComparator, });
+		final TableColumn[] tableColumns = new TableColumn[] { 
+				filenaColumn, priorityColumn, ruleColumn,
+				categoryColumn, };
+		final Comparator[] columnComparators = new Comparator[] {
+				filenameComparator, priorityComparator, ruleComparator, 
+				categoryComparator, };
+
+		sorter = new PhpmdViewSorter(tableViewer, tableColumns, columnComparators);
 
 		if (null != memento)
 			sorter.init(memento);
