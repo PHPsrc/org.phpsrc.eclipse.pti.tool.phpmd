@@ -101,7 +101,7 @@ public class Phpmd extends AbstractPHPTool {
 
 		private String ruleSetFilename;
 
-		private String baseResoucePath = "/php/library/PEAR/data/PHP_PMD/rulesets"; //$NON-NLS-1$
+		private String baseResoucePath = "/php/library/PEAR/data/PHP_PMD/resources/rulesets"; //$NON-NLS-1$
 
 		private AbstractPHPToolPlugin resourceResolver = null;
 
