@@ -101,7 +101,7 @@ public class Phpmd extends AbstractPHPTool {
 
 		private String ruleSetFilename;
 
-		private String baseResoucePath = "/php/library/PEAR/data/PHP_PMD/resources/rulesets"; //$NON-NLS-1$
+		private String baseResourcePath = "/php/library/PEAR/data/PHP_PMD/resources/rulesets"; //$NON-NLS-1$
 
 		private AbstractPHPToolPlugin resourceResolver = null;
 
@@ -136,7 +136,7 @@ public class Phpmd extends AbstractPHPTool {
 		}
 
 		public String getBaseResoucePath() {
-			return baseResoucePath;
+			return baseResourcePath;
 		}
 
 		public String getRuleSetFilename() {
@@ -149,7 +149,7 @@ public class Phpmd extends AbstractPHPTool {
 			if (theBaseResourcePath.lastIndexOf("/") == theBaseResourcePath.length()) {
 				theBaseResourcePath = theBaseResourcePath.substring(0, theBaseResourcePath.length());
 			}
-			this.baseResoucePath = theBaseResourcePath;
+			this.baseResourcePath = theBaseResourcePath;
 		}
 	}
 }
