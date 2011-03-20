@@ -23,8 +23,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 import org.phpsrc.eclipse.pti.tools.phpmd.model.IViolation;
 import org.phpsrc.eclipse.pti.tools.phpmd.model.ViolationManager;
+import org.phpsrc.eclipse.pti.tools.phpmd.util.EditorUtil;
 
-import util.EditorUtil;
 
 public class PhpmdView extends ViewPart {
 	private TableViewer tableViewer;

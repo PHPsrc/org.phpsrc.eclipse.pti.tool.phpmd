@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
 
-package util;
+package org.phpsrc.eclipse.pti.tools.phpmd.util;
 
 import java.util.Iterator;
 
