@@ -19,10 +19,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import org.phpsrc.eclipse.pti.tools.phpmd.PhpmdLog;
 import org.phpsrc.eclipse.pti.tools.phpmd.PhpmdPlugin;
 import org.phpsrc.eclipse.pti.tools.phpmd.core.IResourceCollector;
 import org.phpsrc.eclipse.pti.tools.phpmd.core.ResourceCollectorFactory;
+import org.phpsrc.eclipse.pti.tools.phpmd.views.PhpmdView;
 
 public class PhpmdHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -32,9 +38,28 @@ public class PhpmdHandler extends AbstractHandler {
 		if (null == resource) {
 			return null;
 		}
+		
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+
+		if (null == window) {
+			return null;
+		}
+
+		IWorkbenchPage page = window.getActivePage();
+		
+		if (null == page) {
+			return null;
+		}
 
 		Job job = createJob(resource);
 		job.schedule();
+		
+		try {
+			page.showView(PhpmdView.ID);
+		}
+		catch (PartInitException e) {
+			PhpmdLog.logError("Failed to open PHPMD View", e);
+		}
 
 		return null;
 	}

@@ -27,6 +27,8 @@ import org.phpsrc.eclipse.pti.tools.phpmd.util.EditorUtil;
 
 
 public class PhpmdView extends ViewPart {
+	public static final String ID = "org.phpsrc.eclipse.pti.tools.phpmd.views.PhpmdView";
+	
 	private TableViewer tableViewer;
 
 	private TableColumn filenaColumn;
