@@ -38,28 +38,11 @@ public class PhpmdHandler extends AbstractHandler {
 		if (null == resource) {
 			return null;
 		}
-		
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-
-		if (null == window) {
-			return null;
-		}
-
-		IWorkbenchPage page = window.getActivePage();
-		
-		if (null == page) {
-			return null;
-		}
 
 		Job job = createJob(resource);
 		job.schedule();
 		
-		try {
-			page.showView(PhpmdView.ID);
-		}
-		catch (PartInitException e) {
-			PhpmdLog.logError("Failed to open PHPMD View", e);
-		}
+		showPhpmdView(event);
 
 		return null;
 	}
@@ -96,5 +79,26 @@ public class PhpmdHandler extends AbstractHandler {
 
 		job.setUser(false);
 		return job;
+	}
+	
+	private void showPhpmdView(ExecutionEvent event) {
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+
+		if (null == window) {
+			return;
+		}
+
+		IWorkbenchPage page = window.getActivePage();
+		
+		if (null == page) {
+			return;
+		}
+
+		try {
+			page.showView(PhpmdView.ID);
+		}
+		catch (PartInitException e) {
+			PhpmdLog.logError("Failed to open PHPMD View", e);
+		}
 	}
 }
