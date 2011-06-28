@@ -82,7 +82,7 @@ public class Phpmd extends AbstractPHPTool {
 		resultSets.append(RuleSet.NAMING.getFullPathname());
 		resultSets.append(",");
 		resultSets.append(RuleSet.UNUSEDCODE.getFullPathname());
-		return resultSets.toString();
+		return OperatingSystem.escapeShellFileArg(resultSets.toString());
 	}
 
 	private INIFileEntry[] getPHPINIEntries() {
@@ -128,7 +128,8 @@ public class Phpmd extends AbstractPHPTool {
 
 		public String getFullPathname() {
 			IPath path = getResourceResolver().resolvePluginResource(getFilepath());
-			return OperatingSystem.escapeShellFileArg(path.toOSString());
+			return path.toOSString();
+			//return OperatingSystem.escapeShellFileArg(path.toOSString());
 		}
 
 		private String getFilepath() {
